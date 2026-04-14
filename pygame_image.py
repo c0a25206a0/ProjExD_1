@@ -24,15 +24,22 @@ def main():
 
         key_lst = pg.key.get_pressed()
         #print(key_lst)#確認用print
-        koukaton_rct.move_ip(-1, 0)
-        if key_lst[pg.K_UP]:
-            koukaton_rct.move_ip(0, -1)
-        if key_lst[pg.K_DOWN]:
-            koukaton_rct.move_ip(0, +1)
-        if key_lst[pg.K_LEFT]:  # 左矢印キーが押されていたら
-            koukaton_rct.move_ip(-1, 0)
-        if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されていたら
-            koukaton_rct.move_ip(+1, 0)
+
+        a = {
+            pg.K_UP: (0, -1),  
+            pg.K_DOWN: (0, +1),
+            pg.K_LEFT: (-1, 0),
+            pg.K_RIGHT: (+2, 0),
+        }
+
+        idou = [-1, 0]
+
+        for key, move in a.items():
+            if key_lst[key]:
+                idou[0] += move[0]
+                idou[1] += move[1]
+
+        koukaton_rct.move_ip(idou[0], idou[1])
         
         screen.blit(bg_img, [-x, 0])#練習2
         screen.blit(bg_img2, [-x+1600,0])#練習7
