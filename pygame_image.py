@@ -24,6 +24,7 @@ def main():
 
         key_lst = pg.key.get_pressed()
         #print(key_lst)#確認用print
+        koukaton_rct.move_ip(-1, 0)
         if key_lst[pg.K_UP]:
             koukaton_rct.move_ip(0, -1)
         if key_lst[pg.K_DOWN]:
