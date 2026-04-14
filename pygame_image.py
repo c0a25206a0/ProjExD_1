@@ -12,6 +12,8 @@ def main():
     bg_img = pg.image.load("fig/pg_bg.jpg")#練習1
     bg_img2 = pg.transform.flip(bg_img, True, False)
     koukaton_img = pg.image.load("fig/3.png")#練習3
+    koukaton_rct = koukaton_img.get_rect()
+    koukaton_rct.center = 300, 200
     koukaton_img = pg.transform.flip(koukaton_img, True, False)
     tmr = 0
     while True:
@@ -19,10 +21,20 @@ def main():
             if event.type == pg.QUIT: return
 
         x = tmr%3200 #練習5
+
+        key_lst = pg.key.get_pressed()
+        #print(key_lst)#確認用print
+        if key_lst[pg.K_UP]:
+            koukaton_rct.move_ip((0, -1))
+        if key_lst[pg.K_DOWN]:
+            koukaton_rct.move_ip((-1, 0))
+        #if key_lst[pg.K_RIGHT]:
+            #koukaton_rct.move_ip(())
+        
         screen.blit(bg_img, [-x, 0])#練習2
         screen.blit(bg_img2, [-x+1600,0])#練習7
         screen.blit(bg_img, [-x+3200, 0])#練習9
-        screen.blit(koukaton_img, [300, 200])#練習4
+        screen.blit(koukaton_img, koukaton_rct)#練習4,練習10
         pg.display.update()
         tmr += 1        
         clock.tick(200)#練習6
